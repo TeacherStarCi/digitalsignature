@@ -14,13 +14,13 @@ Alice muốn gửi cho Bob một thông điệp
 Để tránh chuyện này, chữ kí điện tử ra đời. <br> Trước hết, Alice sẽ công khai Public Key cho mọi người, không riêng gì Bob. Bù lại, Alice phải giấu đi Private Key của mình.
 <br> Bên cạnh truyền tải thông điệp, Alice sẽ gửi kèm 1 signature (chữ ký), thứ được mã hóa từ thông điệp ban đầu và Private Key của Alice. Điều này được mô tả ở hàm `sign` 
 
-`sign(undefined, data, privateKey) ` <br>
-( tham số đầu tiên là algorithm, nếu ta để là `null` hoặc `undefined` thì nó sẽ dựa theo thuật toán của Private Key, nên không cần quan tâm lắm. Thực chất hàm `sign` chỉ có 2 tham số là `data` và `privateKey` )
+`sign(algorithm, data, privateKey) ` <br>
+( tham số đầu tiên nếu ta để là `null` hoặc `undefined` thì nó sẽ dựa theo thuật toán của Private Key, nên không cần quan tâm lắm. Thực chất hàm `sign` chỉ có 2 tham số là `data` và `privateKey` )
 
 Vì Alice gửi cả thông điệp lẫn signature nên nếu Bob chỉ nhận được thông điệp thôi thì chắc chắn nó không được gửi từ Alice. Nếu Bob nhận được cả thông điệp lẫn signature, thì Bob có thể sử dụng Public Key mà Alice đã công khai trước đó, thông điệp lẫn signature để xác minh rằng có đúng hay không. Điều này được mô tả ở hàm `verify` 
 
-  `verify(undefined, data, publicKey, signature)`
+  `verify(algorithm, data, publicKey, signature)`
  <br>
-( tham số đầu tiên là algorithm, nếu ta để là `null` hoặc `undefined` thì nó sẽ dựa theo thuật toán của Private Key, nên không cần quan tâm lắm. Thực chất hàm `verify` chỉ có 3 tham số là `data`, `publicKey` và `signature` )
+( tham số đầu tiên nếu ta để là `null` hoặc `undefined` thì nó sẽ dựa theo thuật toán của Private Key, nên không cần quan tâm lắm. Thực chất hàm `verify` chỉ có 3 tham số là `data`, `publicKey` và `signature` )
 
   Hàm `verify` trả về `true` hoặc `false`. Nếu `true` là chắn chắn Alice gửi, còn nếu `false` thì không.
